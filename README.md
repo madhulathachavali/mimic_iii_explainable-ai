@@ -10,11 +10,13 @@ This project aims to predict **ICU mortality risk** using **XGBoost** and provid
 
 🔍 **Key Insights**
 
-* 🔬 **Key Features**: age, avg_heart_rate, avg_creatinine, gender, and care unit type 
-* 💡 SHAP values help explain model predictions, both globally and for individual cases
+* 🔬 **Key Features**: age, avg_heart_rate, avg_creatinine, gender, and care unit type
   
-<img width="797" alt="image" src="https://github.com/user-attachments/assets/a9110f7d-1b1e-4c0c-a369-347f38b55e4b" />
+<img width="717" alt="image" src="https://github.com/user-attachments/assets/483a1454-c52c-4f03-90b3-700d4e56d081" />
 
+* 💡 SHAP values help explain model predictions, both globally and for individual cases
+
+<img width="717" alt="image" src="https://github.com/user-attachments/assets/8a9c3e16-269e-4d23-a31a-97501bd6c4e7" />
   
 📊 **Model Development & Evaluation**
 
@@ -51,8 +53,8 @@ This project aims to predict **ICU mortality risk** using **XGBoost** and provid
   shap_values = explainer.shap_values(X_test)
   shap.summary_plot(shap_values, X_test)
   ```
-<img width="730" alt="image" src="https://github.com/user-attachments/assets/61c0ab53-9b35-4465-9774-0a5e31675c96" />
-<img width="733" alt="image" src="https://github.com/user-attachments/assets/bbf058b1-3a0a-4312-8147-323fb8e7a6f1" />
+<img width="715" alt="image" src="https://github.com/user-attachments/assets/61c0ab53-9b35-4465-9774-0a5e31675c96" />
+<img width="715" alt="image" src="https://github.com/user-attachments/assets/bbf058b1-3a0a-4312-8147-323fb8e7a6f1" />
 
  
 4️⃣ **Classification Report and Confusion Matrix**:
@@ -98,13 +100,13 @@ This project aims to predict **ICU mortality risk** using **XGBoost** and provid
 Explainable AI allows clinicians to understand why a patient is at high risk by providing the top features influencing the risk prediction. 
 Below is the detailed table for the 5 patients with SHAP values and top 3 features.
 
-| **Patient** | **Age** | **LOS** (Days) | **Avg. Heart Rate** | **SHAP Value (Age)** | **SHAP Value (LOS)** | **Top 3 Features**                            |
-| ----------- | ------- | -------------- | ------------------- | -------------------- | -------------------- | --------------------------------------------- |
-| Patient 1   | 47.0    | 10.13          | 82.64               | -0.462578            | 0.703025             | \[LOS, Age, Avg. Platelets]                   |
-| Patient 2   | 58.0    | 1.08           | 52.41               | -0.430839            | -1.231928            | \[Avg. Heart Rate, LOS, Avg. SBP]             |
-| Patient 3   | 74.0    | 3.33           | 72.99               | 0.005564             | 0.054851             | \[Avg. Heart Rate, Avg. Creatinine, Avg. SBP] |
-| Patient 4   | 70.0    | 0.54           | 91.75               | 0.307043             | 0.940206             | \[LOS, Avg. SBP, Avg. Creatinine]             |
-| Patient 5   | 61.0    | 2.67           | 77.97               | -0.070650            | -0.388737            | \[Avg. Creatinine, Avg. SBP, LOS]             |
+| **Patient** | **Age** | **LOS (Days)** | **Avg. Heart Rate** | **SHAP Value (Age)** | **SHAP Value (LOS)** | **Top 3 Features**                            |
+|-------------|---------|----------------|---------------------|----------------------|----------------------|-----------------------------------------------|
+| Patient 1   | 47.0    | 10.13          | 82.64               | -0.46                | 0.70                 | [LOS, Age, Avg. Platelets]                   |
+| Patient 2   | 58.0    | 1.08           | 52.41               | -0.43                | -1.23                | [Avg. Heart Rate, LOS, Avg. SBP]             |
+| Patient 3   | 74.0    | 3.33           | 72.99               | 0.01                 | 0.05                 | [Avg. Heart Rate, Avg. Creatinine, Avg. SBP] |
+| Patient 4   | 70.0    | 0.54           | 91.75               | 0.31                 | 0.94                 | [LOS, Avg. SBP, Avg. Creatinine]             |
+| Patient 5   | 61.0    | 2.67           | 77.97               | -0.07                | -0.39                | [Avg. Creatinine, Avg. SBP, LOS]             |
 
 📚 **References**
 
