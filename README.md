@@ -1,6 +1,7 @@
-🏥 **ICU Mortality Prediction with Explainable AI (XAI) using MIMIC-III**
+# 🏥 **ICU Mortality Prediction with Explainable AI (XAI) using MIMIC-III**
 
 This project aims to predict **ICU mortality risk** using **XGBoost** and provide **explainability** with **SHAP**. 
+
 🧰 **Tools & Methods**
 
 * **Model**: XGBoost for binary classification (alive vs deceased).
