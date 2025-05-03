@@ -15,7 +15,7 @@ This project aims to predict **ICU mortality risk** using **XGBoost** and provid
 📊 **Model Development & Evaluation**
 1️⃣ **Data Preparation**:
 
-* Preprocessing features such as age, heart rate, creatinine.
+* Preprocessing features such as age, heart rate, and creatinine.
 
 2️⃣ **Model Development**:
 
