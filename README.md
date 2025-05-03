@@ -1,56 +1,65 @@
-# Explainable AI for ICU Mortality Prediction using MIMIC-III
+🏥 **ICU Mortality Prediction with Explainable AI (XAI) using MIMIC-III**
 
-## Overview
+This project aims to predict **ICU mortality risk** using **XGBoost** and provide **explainability** with **SHAP**. 
+🧰 **Tools & Methods**
 
-This project aims to develop an **Explainable AI (XAI)** model to predict **ICU mortality risk** based on patient data from the MIMIC-III database. The project utilizes **XGBoost** for mortality prediction and **SHAP** (SHapley Additive exPlanations) to explain the predictions and identify key features influencing mortality risk.
+* **Model**: XGBoost for binary classification (alive vs deceased).
+* **Explainability**: SHAP to understand feature contributions to mortality risk.
+* **Data**: Clinical data from MIMIC-III (vitals, lab tests, comorbidities).
 
-By using this approach, the goal is to build a reliable, interpretable, and actionable model that can help clinicians make better-informed decisions in the ICU setting.
+🔍 **Key Insights**
 
-## Key Features
+* 🔬 **Key Features**: age, avg_heart_rate, avg_creatinine, gender, and care unit type 
+* 💡 SHAP values help explain model predictions, both globally and for individual cases
+  
+📊 **Model Development & Evaluation**
+1️⃣ **Data Preparation**:
 
-- **Predictive Model**: XGBoost model for binary classification of ICU mortality (alive vs deceased).
-- **Explainability**: SHAP for interpreting model predictions, providing transparency on what drives mortality risk.
-- **Data**: Utilizes clinical data from the **MIMIC-III** database, including vital signs, laboratory tests, and comorbidities.
+* Preprocessing features such as age, heart rate, creatinine.
 
-## Structure
+2️⃣ **Model Development**:
 
-The project includes the following components:
+* XGBoost trained on ICU data to predict mortality.
+* **Performance metrics**: AUC: 0.85, F1-score: 0.50.
 
-- **Data Preparation**: Preprocessing MIMIC-III clinical data.
-- **Model Development**: Building and training the mortality prediction model.
-- **Model Interpretation**: Using SHAP to interpret model outputs and explain individual predictions.
-- **Evaluation**: Performance metrics (accuracy, ROC-AUC, confusion matrix).
+3️⃣ **Explainability with SHAP**:
 
-## Technologies Used
+* SHAP values reveal which features influence mortality risk and their effect on the model's predictions.
 
-- **XGBoost**: Machine learning algorithm for mortality prediction.
-- **SHAP**: Library for explaining the model's predictions.
-- **BigQuery**: Querying MIMIC-III data from Google Cloud.
+  ```python
+  explainer = shap.TreeExplainer(model)
+  shap_values = explainer.shap_values(X_test)
+  shap.summary_plot(shap_values, X_test)
+  ```
 
-1. LLM-Powered Clinical Narrative: GPT-4 or Med42-v2 (as in [arXiv:2411.16818]) to generate clinician-friendly explanations from SHAP outputs.
-Example:
+4️⃣ **Confusion Matrix**:
 
-python
-# Sample code to link SHAP values to clinical guidelines
-def generate_clinical_insight(shap_values):
-    prompt = f"""
-    Explain these ICU mortality risk factors to a clinician:
-    SHAP values: {shap_values}
-    Context: Patient with avg_creatinine=2.4, avg_platelets=89k.
-    Reference KDIGO AKI guidelines and SEP-3 sepsis criteria.
-    """
-    return llm(prompt)
+* \[\[8261  524], \[ 592  560]]
 
+🧩 **Bias Mitigation**
 
-2. cost-benefit analysis section:
-[PMC11328468]
-model’s AUC (e.g., 0.85) vs widely used scores like SAPS-II (AUC 0.71-0.78 [PMC9139972])
+💬 **LLM Integration**
 
-3. Mitigate Bias 
-SHAP interaction values to check for age/gender bias ([PMC11048122]).
+* **GPT-4** is used to generate clinician-friendly insights based on SHAP values. Example:
 
-4. LLM/Explainability Work:
+  ```python
+  def generate_clinical_insight(shap_values):
+      prompt = f"Explain ICU mortality risk based on SHAP values: {shap_values}"
+      return llm(prompt)
+  ```
 
--Streamlit/Tableau dashboard showing real-time risk scores.
+🔭 **Future Work**
 
+* Real-time dashboards for live mortality risk scores.
+* Model calibration to improve F1-score and sensitivity.
+
+✅ **Conclusion**
+
+Explainable AI allows clinicians to understand why a patient is at high risk by providing the top features influencing the risk prediction. 
+
+📚 **References**
+
+1. Johnson, A., Bulgarelli, L., Pollard, T., Gow, B., Moody, B., Horng, S., Celi, L. A., & Mark, R. (2024). MIMIC-IV (version 3.1). PhysioNet. https://doi.org/10.13026/kpb9-mt58.
+2. Johnson, A.E.W., Bulgarelli, L., Shen, L. et al. MIMIC-IV, a freely accessible electronic health record dataset. Sci Data 10, 1 (2023). https://doi.org/10.1038/s41597-022-01899-x
+3. Goldberger, A., Amaral, L., Glass, L., Hausdorff, J., Ivanov, P. C., Mark, R., ... & Stanley, H. E. (2000). PhysioBank, PhysioToolkit, and PhysioNet: Components of a new research resource for complex physiologic signals. Circulation [Online]. 101 (23), pp. e215–e220.
 
